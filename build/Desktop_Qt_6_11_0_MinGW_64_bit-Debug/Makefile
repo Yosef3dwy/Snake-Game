@@ -223,6 +223,30 @@ board.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/board.cpp.s
 .PHONY : board.cpp.s
 
+emptycelltracker.obj: emptycelltracker.cpp.obj
+.PHONY : emptycelltracker.obj
+
+# target to build an object file
+emptycelltracker.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/emptycelltracker.cpp.obj
+.PHONY : emptycelltracker.cpp.obj
+
+emptycelltracker.i: emptycelltracker.cpp.i
+.PHONY : emptycelltracker.i
+
+# target to preprocess a source file
+emptycelltracker.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/emptycelltracker.cpp.i
+.PHONY : emptycelltracker.cpp.i
+
+emptycelltracker.s: emptycelltracker.cpp.s
+.PHONY : emptycelltracker.s
+
+# target to generate assembly for a file
+emptycelltracker.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/emptycelltracker.cpp.s
+.PHONY : emptycelltracker.cpp.s
+
 food.obj: food.cpp.obj
 .PHONY : food.obj
 
@@ -433,6 +457,9 @@ help:
 	@echo ... board.obj
 	@echo ... board.i
 	@echo ... board.s
+	@echo ... emptycelltracker.obj
+	@echo ... emptycelltracker.i
+	@echo ... emptycelltracker.s
 	@echo ... food.obj
 	@echo ... food.i
 	@echo ... food.s
