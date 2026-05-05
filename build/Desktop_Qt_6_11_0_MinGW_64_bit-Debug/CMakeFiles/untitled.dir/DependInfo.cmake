@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "" "untitled_autogen/timestamp" "custom" "untitled_autogen/deps"
   "D:/WorkingSpace/Coding_WS/Snake-Game/board.cpp" "CMakeFiles/untitled.dir/board.cpp.obj" "gcc" "CMakeFiles/untitled.dir/board.cpp.obj.d"
+  "D:/WorkingSpace/Coding_WS/Snake-Game/emptycelltracker.cpp" "CMakeFiles/untitled.dir/emptycelltracker.cpp.obj" "gcc" "CMakeFiles/untitled.dir/emptycelltracker.cpp.obj.d"
   "D:/WorkingSpace/Coding_WS/Snake-Game/food.cpp" "CMakeFiles/untitled.dir/food.cpp.obj" "gcc" "CMakeFiles/untitled.dir/food.cpp.obj.d"
   "D:/WorkingSpace/Coding_WS/Snake-Game/gamecontroller.cpp" "CMakeFiles/untitled.dir/gamecontroller.cpp.obj" "gcc" "CMakeFiles/untitled.dir/gamecontroller.cpp.obj.d"
   "D:/WorkingSpace/Coding_WS/Snake-Game/main.cpp" "CMakeFiles/untitled.dir/main.cpp.obj" "gcc" "CMakeFiles/untitled.dir/main.cpp.obj.d"

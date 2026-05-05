@@ -30,6 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         board.h board.cpp
         food.h food.cpp
         enums.h
+        emptycelltracker.h emptycelltracker.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET untitled APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
