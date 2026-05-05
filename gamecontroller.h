@@ -5,10 +5,14 @@ class GameController {
 private:
     Board board;
     Snake snake;
-    int NfoodCount;
+    int NFoodCount;
+
+    Ifood* createFood();
+    std::pair<int, int> generateRandomPos();
+
 
 public:
-    Ifood* createFood();
+    GameController(int size);
     void startGame(int difficulty, int size);
     void changeDirection(int direction);
     void pauseGame();

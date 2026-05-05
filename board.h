@@ -6,6 +6,7 @@
 class Board {
 private:
     std::vector<std::vector<CellContent>> grid;
+    
     int side;
 
 public:
