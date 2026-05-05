@@ -3,22 +3,37 @@
 #include "start.h"
 #include "./ui_mainwindow.h"
 #include <QPixmap>
+#include <QDir>
+#include <QMediaPlayer>
+#include <QAudioOutput>
+#include <QUrl>
 
-
+QMediaPlayer *player = new QMediaPlayer;
+QAudioOutput *audio  = new QAudioOutput;
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    QPixmap pix("C:/Users/Owner/Desktop/DSA_Project/untitled/BG.png");
+    // Use relative paths so it works on any machine
+    QString base = QDir::currentPath();
+
+    QPixmap pix(base + "/BG.png");
+    if (pix.isNull())
+        pix = QPixmap(":/BG.png");   // fallback to resource if present
 
     ui->label->setPixmap(pix);
     ui->label->setScaledContents(true);
     ui->label->setGeometry(0, 0, width(), height());
-    ui->label->lower();                   // push behind all other widgets
-    ui->label->setAttribute(Qt::WA_TransparentForMouseEvents, true); // FIX: let clicks pass through
+    ui->label->lower();
+    ui->label->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+
+    player->setAudioOutput(audio);
+    player->setSource(QUrl::fromLocalFile(base + "/BG_music.mp3"));
+    audio->setVolume(0.5f);
+    player->setLoops(QMediaPlayer::Infinite);
+    player->play();
 }
 
 MainWindow::~MainWindow()
@@ -26,28 +41,47 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
 void MainWindow::on_Start_clicked()
 {
-    start *startmenu = new start();
+    int rows = 20, cols = 20, difficulty = 2; // defaults
 
+    if (settingmenu) {
+        // Grid size
+        if      (settingmenu->isS15Selected()) { rows = 15; cols = 15; }
+        else if (settingmenu->isS25Selected()) { rows = 25; cols = 25; }
+        else                                   { rows = 20; cols = 20; }
+
+        // Difficulty
+        difficulty = settingmenu->getDifficulty();
+    }
+
+    start *startmenu = new start(rows, cols, difficulty);
     this->hide();
-
     startmenu->show();
 }
 
-
 void MainWindow::on_Settings_clicked()
 {
-    SettingMenu *settingmenu = new SettingMenu();
+    if (!settingmenu) {
+        settingmenu = new SettingMenu(nullptr);
+        settingmenu->setWindowFlags(Qt::Window);
 
-    settingmenu->show();
+        connect(settingmenu, &SettingMenu::volumeChanged, this, [=](int value) {
+            audio->setVolume(value / 100.0f);
+        });
+
+        connect(settingmenu, &SettingMenu::backClicked, this, [=]() {
+            settingmenu->hide();
+            this->show();
+            this->raise();
+            this->activateWindow();
+        });
+    }
+
+    settingmenu->setInitialVolume(static_cast<int>(audio->volume() * 100));
     this->hide();
-
-
+    settingmenu->show();
 }
-
 
 void MainWindow::on_Exit_clicked()
 {

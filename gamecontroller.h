@@ -1,6 +1,11 @@
 #ifndef GAMECONTROLLER_H
 #define GAMECONTROLLER_H
 
+#include "board.h"
+#include "snake.h"
+#include "emptycelltracker.h"
+#include "enums.h"
+
 class GameController {
 private:
     Snake snake;
@@ -14,18 +19,14 @@ private:
 
 public:
     Board board;
+
     GameController(int size, int dfclty);
 
-    void startGame();
     void changeDirection(Direction direction);
-    void pauseGame();
-    void resumeGame();
-    void restartGame();
-
     bool runStep();
 
-
-
+    int getScore() const;
+    std::pair<int,int> getHead() const;
 };
 
 #endif // GAMECONTROLLER_H

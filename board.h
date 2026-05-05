@@ -6,12 +6,11 @@
 class Board {
 private:
     std::vector<std::vector<CellContent>> grid;
-    
     int side;
 
 public:
     Board(int size);
-    int getSide() const;
+    int getSide() const;   // FIX: must be const to match const usage
     void initialize();
     std::vector<CellContent>& operator[](int index);
 };

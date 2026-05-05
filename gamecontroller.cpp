@@ -1,144 +1,121 @@
 #include "board.h"
 #include "snake.h"
-// #include "food.h"
 #include "gamecontroller.h"
-#include "EmptyCellTracker.h"
+#include "emptycelltracker.h"
 
-
-GameController::GameController(int size , int dfclty) : board(size), snake(size/2 , size/2)
-                                                        , tracker(size), NFoodCount(0)
-                                                        , difficulty(dfclty)
+GameController::GameController(int size, int dfclty)
+    : board(size), snake(size / 2, size / 2),
+    tracker(size), NFoodCount(0), difficulty(dfclty)
 {
-    board[size/2][size/2] = CellContent::body;
+    // Mark starting cell as occupied and remove from tracker
+    board[size / 2][size / 2] = CellContent::body;
+    tracker.EmptyCellRemoval(size / 2, size / 2);
     createFood();
 }
-
 
 void GameController::createFood()
 {
     NFoodCount++;
 
-    auto[x,y] = tracker.getRandomEmptyCell();
+    auto [x, y] = tracker.getRandomEmptyCell();
 
-    if(NFoodCount > 5)
-    {
+    if (NFoodCount > 5) {
         NFoodCount = 0;
-        board[x][y] = CellContent::Sfood;
+        board[y][x] = CellContent::Sfood;  // FIX: was board[x][y], row=y col=x
+    } else {
+        board[y][x] = CellContent::Nfood;  // FIX: was missing else, always overwrote Sfood
     }
-    board[x][y] = CellContent::Nfood;
+
+    tracker.EmptyCellRemoval(x, y);
 }
 
 void GameController::changeDirection(Direction direction)
 {
     Direction currentDirection = snake.getDirection();
-    
-    switch (direction)
-    {
-        case Direction::UP:
-            if (currentDirection == Direction::DOWN) { return; }
-            break;
 
-        case Direction::DOWN:
-            if (currentDirection == Direction::UP) { return; }
-            break;
-
-        case Direction::LEFT:
-            if (currentDirection == Direction::RIGHT) { return; }
-            break;
-
-        case Direction::RIGHT:
-            if (currentDirection != Direction::LEFT) { return; }
-            break;
+    switch (direction) {
+    case Direction::UP:
+        if (currentDirection == Direction::DOWN) return;
+        break;
+    case Direction::DOWN:
+        if (currentDirection == Direction::UP) return;
+        break;
+    case Direction::LEFT:
+        if (currentDirection == Direction::RIGHT) return;
+        break;
+    case Direction::RIGHT:
+        if (currentDirection == Direction::LEFT) return;  // FIX: was != LEFT (inverted)
+        break;
     }
 
     snake.setDirection(direction);
-
 }
 
 bool GameController::willHitBoundary() const
 {
     auto currentHead = snake.getHead();
     Direction currentDir = snake.getDirection();
-
     int size = board.getSide();
 
-    switch(currentDir)
-    {
-        case Direction::UP:
-            if (currentHead.second == 0) return true;
-            break;
-
-        case Direction::DOWN:
-            if (currentHead.second == size) return true;
-            break;
-
-        case Direction::LEFT:
-            if (currentHead.first == 0) return true;
-            break;
-
-        case Direction::RIGHT:
-            if (currentHead.first == size) return true;
-            break;
+    switch (currentDir) {
+    case Direction::UP:    if (currentHead.second == 0)        return true; break;
+    case Direction::DOWN:  if (currentHead.second == size - 1) return true; break;  // FIX: was size (off by 1)
+    case Direction::LEFT:  if (currentHead.first  == 0)        return true; break;
+    case Direction::RIGHT: if (currentHead.first  == size - 1) return true; break;  // FIX: was size (off by 1)
     }
-
     return false;
 }
-
 
 void GameController::eat(int growth)
 {
     auto nextHead = snake.getNextHead();
     snake.grow(growth);
-    tracker.EmptyCellRemoval(nextHead.first, nextHead.second);
-    board[nextHead.first][nextHead.second] = CellContent::body;
+    // nextHead is now a new body cell; tail removal is NOT done on eat (snake grew)
+    board[nextHead.second][nextHead.first] = CellContent::body;  // FIX: row=y, col=x
+    // tracker removal already done in createFood; no removal needed here
     createFood();
 }
 
-
-
-
 bool GameController::runStep()
 {
-    bool lose = false;
-
-    auto nextHead = snake.getNextHead();
+    auto nextHead    = snake.getNextHead();
     auto currentTail = snake.getTail();
-    
-    // Conditions checks
-    // 1. did it hit boundry
-    if(willHitBoundary())
-    {
-        lose = true;
-        return false;
-    }    
 
-    // 2. did it hit itself
-    if(board[nextHead.first][nextHead.second] == CellContent::body )
-    {
-        lose = true;
+    // 1. Hit boundary?
+    if (willHitBoundary())
         return false;
-    }
 
-    // 3. if(did it eat food)
-    // Normal Food
-    if(board[nextHead.first][nextHead.second] == CellContent::Nfood )
-    {
+    // 2. Hit itself?
+    if (board[nextHead.second][nextHead.first] == CellContent::body)  // FIX: row=y col=x
+        return false;
+
+    // 3. Ate food?
+    CellContent nextCell = board[nextHead.second][nextHead.first];
+
+    if (nextCell == CellContent::Nfood) {
         eat(1);
-    }
-    
-    // Super Food
-    else if(board[nextHead.first][nextHead.second] == CellContent::Sfood)
-    {
+        return true;  // eat() already calls snake.grow() and moves internally
+    } else if (nextCell == CellContent::Sfood) {
         eat(3);
+        return true;
     }
 
-    // move
+    // 4. Normal move
     snake.move();
 
-    // change the boarder cells (the occupied one and the released one)
-    board[nextHead.first][nextHead.second] = CellContent::body;
-    board[currentTail.first][currentTail.second] == CellContent::empty;
+    board[nextHead.second][nextHead.first] = CellContent::body;   // FIX: row=y col=x
+    board[currentTail.second][currentTail.first] = CellContent::empty; // FIX: was == (comparison not assignment)
+    tracker.EmptyCellAddition(currentTail.first, currentTail.second);
 
     return true;
 }
 
+int GameController::getScore() const
+{
+    return const_cast<Snake&>(snake).score();
+}
+
+std::pair<int, int> GameController::getHead() const
+{
+    return snake.getHead();
+}

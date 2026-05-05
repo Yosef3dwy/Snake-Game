@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe
+CMAKE_COMMAND = C:\Qt\Tools\CMake_64\bin\cmake.exe
 
 # The command to remove a file.
-RM = D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f
+RM = C:\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\WorkingSpace\Coding_WS\Snake-Game
+CMAKE_SOURCE_DIR = C:\Users\Owner\Desktop\Snake-Game
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug
+CMAKE_BINARY_DIR = C:\Users\Owner\Desktop\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	D:\Programs\Qt\Tools\CMake_64\bin\cmake-gui.exe -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	C:\Qt\Tools\CMake_64\bin\cmake-gui.exe -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	C:\Qt\Tools\CMake_64\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -96,44 +96,44 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -P cmake_install.cmake
+	C:\Qt\Tools\CMake_64\bin\cmake.exe -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -P cmake_install.cmake
+	C:\Qt\Tools\CMake_64\bin\cmake.exe -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	C:\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	C:\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	C:\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	C:\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Owner\Desktop\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles C:\Users\Owner\Desktop\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Owner\Desktop\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -247,30 +247,6 @@ emptycelltracker.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/emptycelltracker.cpp.s
 .PHONY : emptycelltracker.cpp.s
 
-food.obj: food.cpp.obj
-.PHONY : food.obj
-
-# target to build an object file
-food.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/food.cpp.obj
-.PHONY : food.cpp.obj
-
-food.i: food.cpp.i
-.PHONY : food.i
-
-# target to preprocess a source file
-food.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/food.cpp.i
-.PHONY : food.cpp.i
-
-food.s: food.cpp.s
-.PHONY : food.s
-
-# target to generate assembly for a file
-food.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/food.cpp.s
-.PHONY : food.cpp.s
-
 gamecontroller.obj: gamecontroller.cpp.obj
 .PHONY : gamecontroller.obj
 
@@ -294,6 +270,30 @@ gamecontroller.s: gamecontroller.cpp.s
 gamecontroller.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/gamecontroller.cpp.s
 .PHONY : gamecontroller.cpp.s
+
+gamewidget.obj: gamewidget.cpp.obj
+.PHONY : gamewidget.obj
+
+# target to build an object file
+gamewidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/gamewidget.cpp.obj
+.PHONY : gamewidget.cpp.obj
+
+gamewidget.i: gamewidget.cpp.i
+.PHONY : gamewidget.i
+
+# target to preprocess a source file
+gamewidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/gamewidget.cpp.i
+.PHONY : gamewidget.cpp.i
+
+gamewidget.s: gamewidget.cpp.s
+.PHONY : gamewidget.s
+
+# target to generate assembly for a file
+gamewidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/gamewidget.cpp.s
+.PHONY : gamewidget.cpp.s
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
@@ -460,12 +460,12 @@ help:
 	@echo ... emptycelltracker.obj
 	@echo ... emptycelltracker.i
 	@echo ... emptycelltracker.s
-	@echo ... food.obj
-	@echo ... food.i
-	@echo ... food.s
 	@echo ... gamecontroller.obj
 	@echo ... gamecontroller.i
 	@echo ... gamecontroller.s
+	@echo ... gamewidget.obj
+	@echo ... gamewidget.i
+	@echo ... gamewidget.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
