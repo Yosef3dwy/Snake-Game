@@ -1,7 +1,7 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
-enum class CellContent {
+enum  CellContent {
     empty,
     body,
     Nfood,

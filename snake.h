@@ -4,14 +4,14 @@
 class Snake {
 private:
     std::deque<std::pair<int, int>> body;
-    int direction;
+    Direction direction;
 
 public:
-    Snake();
+    Snake(int x_init, int y_init);
     std::pair<int, int> getTail();
     std::pair<int, int> getHead();
-    void setDirection(int direction);
-    void getDirection(); // Note: Matches UML, though typically this would return an int
+    void setDirection(Direction direction);
+    Direction getDirection();
     void move();
     void grow(int amount);
     int score();
