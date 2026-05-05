@@ -21,7 +21,19 @@ GameController::GameController(int size, int dfclty)
 void GameController::createFood()
 {
     NFoodCount++;
-    auto [x, y] = tracker.getRandomEmptyCell();   // x=col, y=row
+    std::pair<int, int> cell;
+
+    // Guard against stale tracker entries by confirming the board cell is still empty.
+    do {
+        cell = tracker.getRandomEmptyCell();   // x=col, y=row
+        if (board[cell.second][cell.first] == CellContent::empty) {
+            break;
+        }
+        tracker.EmptyCellRemoval(cell.first, cell.second);
+    } while (true);
+
+    int x = cell.first;
+    int y = cell.second;
 
     if (NFoodCount > 5) {
         NFoodCount = 0;

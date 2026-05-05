@@ -1,7 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/untitled_autogen.dir/AutogenUsed.txt"
-  "CMakeFiles/untitled_autogen.dir/ParseCache.txt"
-  "untitled_autogen"
   "CMakeFiles/untitled.dir/board.cpp.obj"
   "CMakeFiles/untitled.dir/board.cpp.obj.d"
   "CMakeFiles/untitled.dir/emptycelltracker.cpp.obj"
@@ -22,6 +19,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/untitled.dir/start.cpp.obj.d"
   "CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj"
   "CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj.d"
+  "CMakeFiles/untitled_autogen.dir/AutogenUsed.txt"
+  "CMakeFiles/untitled_autogen.dir/ParseCache.txt"
+  "untitled_autogen"
   "libuntitled.dll.a"
   "untitled.exe"
   "untitled.exe.manifest"
