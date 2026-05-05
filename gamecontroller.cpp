@@ -12,9 +12,19 @@ GameController::GameController(int size, int dfclty)
 {
     // Snake starts at (col=size/2, row=size/2)
     // board[row][col]
-    board[size / 2][size / 2] = CellContent::body;
-    tracker.EmptyCellRemoval(size / 2, size / 2);
+    setBoardCell(size / 2, size / 2, CellContent::body);
     createFood();
+}
+
+void GameController::setBoardCell(int x, int y, CellContent content)
+{
+    if (content == CellContent::empty) {
+        tracker.EmptyCellAddition(x, y);
+    } else {
+        tracker.EmptyCellRemoval(x, y);
+    }
+
+    board[y][x] = content;
 }
 
 // ─── createFood ──────────────────────────────────────────────────────────────
@@ -37,11 +47,10 @@ void GameController::createFood()
 
     if (NFoodCount > 5) {
         NFoodCount = 0;
-        board[y][x] = CellContent::Sfood;
+        setBoardCell(x, y, CellContent::Sfood);
     } else {
-        board[y][x] = CellContent::Nfood;
+        setBoardCell(x, y, CellContent::Nfood);
     }
-    tracker.EmptyCellRemoval(x, y);
 }
 
 // ─── changeDirection ─────────────────────────────────────────────────────────
@@ -78,7 +87,7 @@ void GameController::eat(int growth)
 {
     auto [nx, ny] = snake.getNextHead();   // next position (col, row)
     snake.grow(growth);
-    board[ny][nx] = CellContent::body;
+    setBoardCell(nx, ny, CellContent::body);
     createFood();
 }
 
@@ -100,9 +109,8 @@ bool GameController::runStep()
 
     // Normal move
     snake.move();
-    board[ny][nx] = CellContent::body;
-    board[ty][tx] = CellContent::empty;
-    tracker.EmptyCellAddition(tx, ty);
+    setBoardCell(nx, ny, CellContent::body);
+    setBoardCell(tx, ty, CellContent::empty);
 
     return true;
 }

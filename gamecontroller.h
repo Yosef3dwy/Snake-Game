@@ -16,6 +16,7 @@ private:
     void createFood();
     bool willHitBoundary() const;
     void eat(int growth);
+    void setBoardCell(int x, int y, CellContent content);
 
 public:
     Board board;
