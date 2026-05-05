@@ -1,5 +1,4 @@
 #include <iostream>
-#include <deque>
 #include "enums.h"
 #include "snake.h"
 
@@ -14,44 +13,32 @@ void Snake::setDirection(Direction direction)
     this->direction = direction;
 }
 
-std::pair<int, int> Snake::getTail()
+std::pair<int, int> Snake::getTail() const
 {
     return body.back();
 }
 
-std::pair<int, int> Snake::getHead()
+std::pair<int, int> Snake::getHead() const 
 {
     return body.front();
 }
 
 void Snake::move()
 {
-    int x_t = body.front().first;
-    int y_t = body.front().second;
-    
-    if      (direction == Direction::RIGHT) { x_t++; }
-    else if (direction == Direction::LEFT ) { x_t--; }
-    else if (direction == Direction::UP   ) { y_t--; }
-    else if (direction == Direction::DOWN ) { y_t++; }
-    
+    auto [x_t, y_t] = this->getNextHead();
+
     body.push_front(std::make_pair(x_t, y_t));
     body.pop_back();
 }
 
 void Snake::grow(int amount)
 {
-    int x_t = body.front().first;
-    int y_t = body.front().second;
+    auto [x_t, y_t] = this->getNextHead();
 
-    if      (direction == Direction::RIGHT) { x_t++; }
-    else if (direction == Direction::LEFT ) { x_t--; }
-    else if (direction == Direction::UP   ) { y_t--; }
-    else if (direction == Direction::DOWN ) { y_t++; }
-    
     body.push_front(std::make_pair(x_t, y_t));
 }
 
-Direction Snake::getDirection()
+Direction Snake::getDirection() const
 {
     return direction;
 }
@@ -60,3 +47,18 @@ int Snake::score()
 {
     return body.size() - 1;
 }
+
+
+std::pair<int, int> Snake::getNextHead() const
+    {
+
+        int x_t = body.front().first;
+        int y_t = body.front().second;
+
+        if      (direction == Direction::RIGHT) { x_t++; }
+        else if (direction == Direction::LEFT ) { x_t--; }
+        else if (direction == Direction::UP   ) { y_t--; }
+        else if (direction == Direction::DOWN ) { y_t++; }
+
+        return std::make_pair(x_t , y_t);
+    }

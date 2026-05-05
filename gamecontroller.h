@@ -3,21 +3,29 @@
 
 class GameController {
 private:
-    Board board;
     Snake snake;
+    EmptyCellTracker tracker;
     int NFoodCount;
+    int difficulty;
 
-    Ifood* createFood();
-    std::pair<int, int> generateRandomPos();
-
+    void createFood();
+    bool willHitBoundary() const;
+    void eat(int growth);
 
 public:
-    GameController(int size);
-    void startGame(int difficulty, int size);
-    void changeDirection(int direction);
+    Board board;
+    GameController(int size, int dfclty);
+
+    void startGame();
+    void changeDirection(Direction direction);
     void pauseGame();
     void resumeGame();
     void restartGame();
+
+    bool runStep();
+
+
+
 };
 
 #endif // GAMECONTROLLER_H

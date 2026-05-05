@@ -1,15 +1,17 @@
-#include "food.h"
+// #include <iostream>
+// #include "food.h"
 
-Ifood::Ifood(int x, int y)
-{
-    position.first = x;
-    position.second = y;
-}
 
-NormalFood::NormalFood(int x, int y) : Ifood(x , y) {}
+// Ifood::Ifood(int x, int y)
+// {
+//     position.first = x;
+//     position.second = y;
+// }
 
-std::pair<int, int> NormalFood::getPosition() const { return position; }
+// NormalFood::NormalFood(int x, int y) : Ifood(x , y) {}
 
-SuperFood::SuperFood(int x, int y) : Ifood(x , y) {}
+// std::pair<int, int> NormalFood::getPosition() const { return position; }
 
-std::pair<int, int> SuperFood::getPosition() const { return position; }
+// SuperFood::SuperFood(int x, int y) : Ifood(x , y) {}
+
+// std::pair<int, int> SuperFood::getPosition() const { return position; }

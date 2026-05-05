@@ -11,7 +11,7 @@ private:
 
 public:
     Board(int size);
-    int getSide();
+    int getSide() const;
     void initialize();
     std::vector<CellContent>& operator[](int index);
 };
