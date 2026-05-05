@@ -25,6 +25,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         settingmenu.h settingmenu.cpp settingmenu.ui
         start.h start.cpp start.ui
+        gamecontroller.h gamecontroller.cpp
+        snake.h snake.cpp
+        board.h board.cpp
+        food.h food.cpp
+        enums.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET untitled APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

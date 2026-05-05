@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = C:\Qt\Tools\CMake_64\bin\cmake.exe
+CMAKE_COMMAND = D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe
 
 # The command to remove a file.
-RM = C:\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f
+RM = D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Owner\Desktop\DSA_Project\untitled
+CMAKE_SOURCE_DIR = D:\WorkingSpace\Coding_WS\Snake-Game
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Owner\Desktop\DSA_Project\untitled\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug
+CMAKE_BINARY_DIR = D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = C:\Users\Owner\Desktop\DSA_Project\untitled\build\Desktop_Qt_
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	C:\Qt\Tools\CMake_64\bin\cmake-gui.exe -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	D:\Programs\Qt\Tools\CMake_64\bin\cmake-gui.exe -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	C:\Qt\Tools\CMake_64\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -96,44 +96,44 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	C:\Qt\Tools\CMake_64\bin\cmake.exe -P cmake_install.cmake
+	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	C:\Qt\Tools\CMake_64\bin\cmake.exe -P cmake_install.cmake
+	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	C:\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	C:\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	C:\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	C:\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Owner\Desktop\DSA_Project\untitled\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles C:\Users\Owner\Desktop\DSA_Project\untitled\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Owner\Desktop\DSA_Project\untitled\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -198,6 +198,78 @@ untitled_autogen: cmake_check_build_system
 untitled_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled_autogen.dir\build.make CMakeFiles/untitled_autogen.dir/build
 .PHONY : untitled_autogen/fast
+
+board.obj: board.cpp.obj
+.PHONY : board.obj
+
+# target to build an object file
+board.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/board.cpp.obj
+.PHONY : board.cpp.obj
+
+board.i: board.cpp.i
+.PHONY : board.i
+
+# target to preprocess a source file
+board.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/board.cpp.i
+.PHONY : board.cpp.i
+
+board.s: board.cpp.s
+.PHONY : board.s
+
+# target to generate assembly for a file
+board.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/board.cpp.s
+.PHONY : board.cpp.s
+
+food.obj: food.cpp.obj
+.PHONY : food.obj
+
+# target to build an object file
+food.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/food.cpp.obj
+.PHONY : food.cpp.obj
+
+food.i: food.cpp.i
+.PHONY : food.i
+
+# target to preprocess a source file
+food.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/food.cpp.i
+.PHONY : food.cpp.i
+
+food.s: food.cpp.s
+.PHONY : food.s
+
+# target to generate assembly for a file
+food.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/food.cpp.s
+.PHONY : food.cpp.s
+
+gamecontroller.obj: gamecontroller.cpp.obj
+.PHONY : gamecontroller.obj
+
+# target to build an object file
+gamecontroller.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/gamecontroller.cpp.obj
+.PHONY : gamecontroller.cpp.obj
+
+gamecontroller.i: gamecontroller.cpp.i
+.PHONY : gamecontroller.i
+
+# target to preprocess a source file
+gamecontroller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/gamecontroller.cpp.i
+.PHONY : gamecontroller.cpp.i
+
+gamecontroller.s: gamecontroller.cpp.s
+.PHONY : gamecontroller.s
+
+# target to generate assembly for a file
+gamecontroller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/gamecontroller.cpp.s
+.PHONY : gamecontroller.cpp.s
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
@@ -271,6 +343,30 @@ settingmenu.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/settingmenu.cpp.s
 .PHONY : settingmenu.cpp.s
 
+snake.obj: snake.cpp.obj
+.PHONY : snake.obj
+
+# target to build an object file
+snake.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/snake.cpp.obj
+.PHONY : snake.cpp.obj
+
+snake.i: snake.cpp.i
+.PHONY : snake.i
+
+# target to preprocess a source file
+snake.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/snake.cpp.i
+.PHONY : snake.cpp.i
+
+snake.s: snake.cpp.s
+.PHONY : snake.s
+
+# target to generate assembly for a file
+snake.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/snake.cpp.s
+.PHONY : snake.cpp.s
+
 start.obj: start.cpp.obj
 .PHONY : start.obj
 
@@ -334,6 +430,15 @@ help:
 	@echo ... untitled_autogen
 	@echo ... untitled_autogen_timestamp_deps
 	@echo ... untitled
+	@echo ... board.obj
+	@echo ... board.i
+	@echo ... board.s
+	@echo ... food.obj
+	@echo ... food.i
+	@echo ... food.s
+	@echo ... gamecontroller.obj
+	@echo ... gamecontroller.i
+	@echo ... gamecontroller.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
@@ -343,6 +448,9 @@ help:
 	@echo ... settingmenu.obj
 	@echo ... settingmenu.i
 	@echo ... settingmenu.s
+	@echo ... snake.obj
+	@echo ... snake.i
+	@echo ... snake.s
 	@echo ... start.obj
 	@echo ... start.i
 	@echo ... start.s

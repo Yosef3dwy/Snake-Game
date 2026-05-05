@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = C:\Qt\Tools\CMake_64\bin\cmake.exe
+CMAKE_COMMAND = D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe
 
 # The command to remove a file.
-RM = C:\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f
+RM = D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Owner\Desktop\DSA_Project\untitled
+CMAKE_SOURCE_DIR = D:\WorkingSpace\Coding_WS\Snake-Game
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Owner\Desktop\DSA_Project\untitled\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug
+CMAKE_BINARY_DIR = D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug
 
 # Utility rule file for untitled_autogen.
 
@@ -67,12 +67,12 @@ include CMakeFiles/untitled_autogen.dir/progress.make
 
 CMakeFiles/untitled_autogen: untitled_autogen/timestamp
 
-untitled_autogen/timestamp: C:/Qt/6.11.0/mingw_64/bin/moc.exe
-untitled_autogen/timestamp: C:/Qt/6.11.0/mingw_64/bin/uic.exe
+untitled_autogen/timestamp: D:/Programs/Qt/6.11.0/mingw_64/bin/moc.exe
+untitled_autogen/timestamp: D:/Programs/Qt/6.11.0/mingw_64/bin/uic.exe
 untitled_autogen/timestamp: CMakeFiles/untitled_autogen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\Owner\Desktop\DSA_Project\untitled\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target untitled"
-	C:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_autogen C:/Users/Owner/Desktop/DSA_Project/untitled/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/CMakeFiles/untitled_autogen.dir/AutogenInfo.json Debug
-	C:\Qt\Tools\CMake_64\bin\cmake.exe -E touch C:/Users/Owner/Desktop/DSA_Project/untitled/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/untitled_autogen/timestamp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target untitled"
+	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_autogen D:/WorkingSpace/Coding_WS/Snake-Game/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/CMakeFiles/untitled_autogen.dir/AutogenInfo.json Debug
+	D:\Programs\Qt\Tools\CMake_64\bin\cmake.exe -E touch D:/WorkingSpace/Coding_WS/Snake-Game/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/untitled_autogen/timestamp
 
 untitled_autogen: CMakeFiles/untitled_autogen
 untitled_autogen: untitled_autogen/timestamp
@@ -88,6 +88,6 @@ CMakeFiles/untitled_autogen.dir/clean:
 .PHONY : CMakeFiles/untitled_autogen.dir/clean
 
 CMakeFiles/untitled_autogen.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Owner\Desktop\DSA_Project\untitled C:\Users\Owner\Desktop\DSA_Project\untitled C:\Users\Owner\Desktop\DSA_Project\untitled\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug C:\Users\Owner\Desktop\DSA_Project\untitled\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug C:\Users\Owner\Desktop\DSA_Project\untitled\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles\untitled_autogen.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" D:\WorkingSpace\Coding_WS\Snake-Game D:\WorkingSpace\Coding_WS\Snake-Game D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug D:\WorkingSpace\Coding_WS\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles\untitled_autogen.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/untitled_autogen.dir/depend
 
