@@ -1,17 +1,18 @@
 #ifndef BOARD_H
 #define BOARD_H
+#include <vector>
+#include "enums.h"
 
 class Board {
 private:
-    std::vector<std::vector<int>> grid;
+    std::vector<std::vector<CellContent>> grid;
     int side;
 
 public:
     Board(int size);
-    std::vector<CellContent>& operator[](int index);
     int getSide();
     void initialize();
-    void render();
+    std::vector<CellContent>& operator[](int index);
 };
 
-#endif // BOARD_H
+#endif
