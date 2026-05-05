@@ -16,13 +16,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Use relative paths so it works on any machine
     QString base = QDir::currentPath();
 
     QPixmap pix(base + "/BG.png");
-    if (pix.isNull())
-        pix = QPixmap(":/BG.png");   // fallback to resource if present
-
     ui->label->setPixmap(pix);
     ui->label->setScaledContents(true);
     ui->label->setGeometry(0, 0, width(), height());
@@ -36,28 +32,22 @@ MainWindow::MainWindow(QWidget *parent)
     player->play();
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+MainWindow::~MainWindow() { delete ui; }
 
 void MainWindow::on_Start_clicked()
 {
-    int rows = 20, cols = 20, difficulty = 2; // defaults
+    int rows = 20, cols = 20, difficulty = 2;
 
     if (settingmenu) {
-        // Grid size
         if      (settingmenu->isS15Selected()) { rows = 15; cols = 15; }
         else if (settingmenu->isS25Selected()) { rows = 25; cols = 25; }
-        else                                   { rows = 20; cols = 20; }
 
-        // Difficulty
         difficulty = settingmenu->getDifficulty();
     }
 
-    start *startmenu = new start(rows, cols, difficulty);
+    start *s = new start(rows, cols, difficulty);
     this->hide();
-    startmenu->show();
+    s->show();
 }
 
 void MainWindow::on_Settings_clicked()
@@ -66,15 +56,12 @@ void MainWindow::on_Settings_clicked()
         settingmenu = new SettingMenu(nullptr);
         settingmenu->setWindowFlags(Qt::Window);
 
-        connect(settingmenu, &SettingMenu::volumeChanged, this, [=](int value) {
-            audio->setVolume(value / 100.0f);
+        connect(settingmenu, &SettingMenu::volumeChanged, this, [=](int v){
+            audio->setVolume(v / 100.0f);
         });
-
-        connect(settingmenu, &SettingMenu::backClicked, this, [=]() {
+        connect(settingmenu, &SettingMenu::backClicked, this, [=](){
             settingmenu->hide();
-            this->show();
-            this->raise();
-            this->activateWindow();
+            this->show(); this->raise(); this->activateWindow();
         });
     }
 

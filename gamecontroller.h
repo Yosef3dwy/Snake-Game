@@ -8,10 +8,10 @@
 
 class GameController {
 private:
-    Snake snake;
+    Snake            snake;
     EmptyCellTracker tracker;
-    int NFoodCount;
-    int difficulty;
+    int              NFoodCount;
+    int              difficulty;
 
     void createFood();
     bool willHitBoundary() const;
@@ -26,7 +26,7 @@ public:
     bool runStep();
 
     int getScore() const;
-    std::pair<int,int> getHead() const;
+    std::pair<int,int> getHead() const;   // returns (col, row) == (x, y)
 };
 
 #endif // GAMECONTROLLER_H

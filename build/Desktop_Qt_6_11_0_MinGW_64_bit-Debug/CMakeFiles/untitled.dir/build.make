@@ -150,26 +150,11 @@ CMakeFiles/untitled.dir/start.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/untitled.dir/start.cpp.s"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Owner\Desktop\Snake-Game\start.cpp -o CMakeFiles\untitled.dir\start.cpp.s
 
-CMakeFiles/untitled.dir/gamecontroller.cpp.obj: CMakeFiles/untitled.dir/flags.make
-CMakeFiles/untitled.dir/gamecontroller.cpp.obj: CMakeFiles/untitled.dir/includes_CXX.rsp
-CMakeFiles/untitled.dir/gamecontroller.cpp.obj: C:/Users/Owner/Desktop/Snake-Game/gamecontroller.cpp
-CMakeFiles/untitled.dir/gamecontroller.cpp.obj: CMakeFiles/untitled.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Owner\Desktop\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/untitled.dir/gamecontroller.cpp.obj"
-	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/untitled.dir/gamecontroller.cpp.obj -MF CMakeFiles\untitled.dir\gamecontroller.cpp.obj.d -o CMakeFiles\untitled.dir\gamecontroller.cpp.obj -c C:\Users\Owner\Desktop\Snake-Game\gamecontroller.cpp
-
-CMakeFiles/untitled.dir/gamecontroller.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/untitled.dir/gamecontroller.cpp.i"
-	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Owner\Desktop\Snake-Game\gamecontroller.cpp > CMakeFiles\untitled.dir\gamecontroller.cpp.i
-
-CMakeFiles/untitled.dir/gamecontroller.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/untitled.dir/gamecontroller.cpp.s"
-	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Owner\Desktop\Snake-Game\gamecontroller.cpp -o CMakeFiles\untitled.dir\gamecontroller.cpp.s
-
 CMakeFiles/untitled.dir/gamewidget.cpp.obj: CMakeFiles/untitled.dir/flags.make
 CMakeFiles/untitled.dir/gamewidget.cpp.obj: CMakeFiles/untitled.dir/includes_CXX.rsp
 CMakeFiles/untitled.dir/gamewidget.cpp.obj: C:/Users/Owner/Desktop/Snake-Game/gamewidget.cpp
 CMakeFiles/untitled.dir/gamewidget.cpp.obj: CMakeFiles/untitled.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Owner\Desktop\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/untitled.dir/gamewidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Owner\Desktop\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/untitled.dir/gamewidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/untitled.dir/gamewidget.cpp.obj -MF CMakeFiles\untitled.dir\gamewidget.cpp.obj.d -o CMakeFiles\untitled.dir\gamewidget.cpp.obj -c C:\Users\Owner\Desktop\Snake-Game\gamewidget.cpp
 
 CMakeFiles/untitled.dir/gamewidget.cpp.i: cmake_force
@@ -179,6 +164,21 @@ CMakeFiles/untitled.dir/gamewidget.cpp.i: cmake_force
 CMakeFiles/untitled.dir/gamewidget.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/untitled.dir/gamewidget.cpp.s"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Owner\Desktop\Snake-Game\gamewidget.cpp -o CMakeFiles\untitled.dir\gamewidget.cpp.s
+
+CMakeFiles/untitled.dir/gamecontroller.cpp.obj: CMakeFiles/untitled.dir/flags.make
+CMakeFiles/untitled.dir/gamecontroller.cpp.obj: CMakeFiles/untitled.dir/includes_CXX.rsp
+CMakeFiles/untitled.dir/gamecontroller.cpp.obj: C:/Users/Owner/Desktop/Snake-Game/gamecontroller.cpp
+CMakeFiles/untitled.dir/gamecontroller.cpp.obj: CMakeFiles/untitled.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Owner\Desktop\Snake-Game\build\Desktop_Qt_6_11_0_MinGW_64_bit-Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/untitled.dir/gamecontroller.cpp.obj"
+	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/untitled.dir/gamecontroller.cpp.obj -MF CMakeFiles\untitled.dir\gamecontroller.cpp.obj.d -o CMakeFiles\untitled.dir\gamecontroller.cpp.obj -c C:\Users\Owner\Desktop\Snake-Game\gamecontroller.cpp
+
+CMakeFiles/untitled.dir/gamecontroller.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/untitled.dir/gamecontroller.cpp.i"
+	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Owner\Desktop\Snake-Game\gamecontroller.cpp > CMakeFiles\untitled.dir\gamecontroller.cpp.i
+
+CMakeFiles/untitled.dir/gamecontroller.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/untitled.dir/gamecontroller.cpp.s"
+	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Owner\Desktop\Snake-Game\gamecontroller.cpp -o CMakeFiles\untitled.dir\gamecontroller.cpp.s
 
 CMakeFiles/untitled.dir/snake.cpp.obj: CMakeFiles/untitled.dir/flags.make
 CMakeFiles/untitled.dir/snake.cpp.obj: CMakeFiles/untitled.dir/includes_CXX.rsp
@@ -232,8 +232,8 @@ untitled_OBJECTS = \
 "CMakeFiles/untitled.dir/mainwindow.cpp.obj" \
 "CMakeFiles/untitled.dir/settingmenu.cpp.obj" \
 "CMakeFiles/untitled.dir/start.cpp.obj" \
-"CMakeFiles/untitled.dir/gamecontroller.cpp.obj" \
 "CMakeFiles/untitled.dir/gamewidget.cpp.obj" \
+"CMakeFiles/untitled.dir/gamecontroller.cpp.obj" \
 "CMakeFiles/untitled.dir/snake.cpp.obj" \
 "CMakeFiles/untitled.dir/board.cpp.obj" \
 "CMakeFiles/untitled.dir/emptycelltracker.cpp.obj"
@@ -246,8 +246,8 @@ untitled.exe: CMakeFiles/untitled.dir/main.cpp.obj
 untitled.exe: CMakeFiles/untitled.dir/mainwindow.cpp.obj
 untitled.exe: CMakeFiles/untitled.dir/settingmenu.cpp.obj
 untitled.exe: CMakeFiles/untitled.dir/start.cpp.obj
-untitled.exe: CMakeFiles/untitled.dir/gamecontroller.cpp.obj
 untitled.exe: CMakeFiles/untitled.dir/gamewidget.cpp.obj
+untitled.exe: CMakeFiles/untitled.dir/gamecontroller.cpp.obj
 untitled.exe: CMakeFiles/untitled.dir/snake.cpp.obj
 untitled.exe: CMakeFiles/untitled.dir/board.cpp.obj
 untitled.exe: CMakeFiles/untitled.dir/emptycelltracker.cpp.obj

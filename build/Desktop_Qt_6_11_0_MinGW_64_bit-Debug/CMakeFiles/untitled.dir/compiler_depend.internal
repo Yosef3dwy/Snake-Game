@@ -1112,8 +1112,10 @@ CMakeFiles/untitled.dir/gamewidget.cpp.obj
  C:/Qt/6.11.0/mingw_64/include/QtCore/qversiontagging.h
  C:/Qt/6.11.0/mingw_64/include/QtCore/qxptype_traits.h
  C:/Qt/6.11.0/mingw_64/include/QtCore/qyieldcpu.h
+ C:/Qt/6.11.0/mingw_64/include/QtGui/QBrush
  C:/Qt/6.11.0/mingw_64/include/QtGui/QKeyEvent
  C:/Qt/6.11.0/mingw_64/include/QtGui/QPainter
+ C:/Qt/6.11.0/mingw_64/include/QtGui/QPen
  C:/Qt/6.11.0/mingw_64/include/QtGui/QTransform
  C:/Qt/6.11.0/mingw_64/include/QtGui/qaction.h
  C:/Qt/6.11.0/mingw_64/include/QtGui/qbitmap.h

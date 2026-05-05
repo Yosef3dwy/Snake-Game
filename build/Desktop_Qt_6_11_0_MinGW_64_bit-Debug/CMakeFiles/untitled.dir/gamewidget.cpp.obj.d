@@ -416,15 +416,17 @@ CMakeFiles/untitled.dir/gamewidget.cpp.obj: \
  C:/Qt/6.11.0/mingw_64/include/QtGui/qinputmethod.h \
  C:/Qt/6.11.0/mingw_64/include/QtCore/qlocale.h \
  C:/Qt/6.11.0/mingw_64/include/QtGui/qguiapplication_platform.h \
- C:\Users\Owner\Desktop\Snake-Game\gamecontroller.h \
- C:\Users\Owner\Desktop\Snake-Game\board.h \
  C:\Users\Owner\Desktop\Snake-Game\enums.h \
+ C:\Users\Owner\Desktop\Snake-Game\board.h \
  C:\Users\Owner\Desktop\Snake-Game\snake.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/deque \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_deque.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/deque.tcc \
+ C:\Users\Owner\Desktop\Snake-Game\gamecontroller.h \
  C:\Users\Owner\Desktop\Snake-Game\emptycelltracker.h \
  C:/Qt/6.11.0/mingw_64/include/QtGui/QPainter \
  C:/Qt/6.11.0/mingw_64/include/QtGui/qpainter.h \
  C:/Qt/6.11.0/mingw_64/include/QtGui/qtextoption.h \
- C:/Qt/6.11.0/mingw_64/include/QtGui/qpen.h
+ C:/Qt/6.11.0/mingw_64/include/QtGui/qpen.h \
+ C:/Qt/6.11.0/mingw_64/include/QtGui/QPen \
+ C:/Qt/6.11.0/mingw_64/include/QtGui/QBrush

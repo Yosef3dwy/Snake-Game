@@ -1,10 +1,8 @@
 #include "board.h"
-#include <vector>
 
-Board::Board(int size)
+Board::Board(int size) : side(size)
 {
-    side = size;
-    grid = std::vector<std::vector<CellContent>>(side, std::vector<CellContent>(side, CellContent::empty));
+    grid.assign(side, std::vector<CellContent>(side, CellContent::empty));
 }
 
 std::vector<CellContent>& Board::operator[](int index)
@@ -12,12 +10,9 @@ std::vector<CellContent>& Board::operator[](int index)
     return grid[index];
 }
 
-int Board::getSide() const   // FIX: added const
-{
-    return side;
-}
+int Board::getSide() const { return side; }
 
 void Board::initialize()
 {
-    grid = std::vector<std::vector<CellContent>>(side, std::vector<CellContent>(side, CellContent::empty));
+    grid.assign(side, std::vector<CellContent>(side, CellContent::empty));
 }

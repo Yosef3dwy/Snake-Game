@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QPushButton>
+#include <QKeyEvent>
 #include "gamewidget.h"
 
 namespace Ui { class start; }
@@ -26,19 +27,16 @@ private slots:
     void onBackToMenu();
 
 private:
-    Ui::start  *ui;
-    GameWidget *game;
-    QLabel     *scoreLabel;
-    QLabel     *gameOverLabel;
+    Ui::start   *ui;
+    GameWidget  *game;
+    QLabel      *scoreLabel;
+    QLabel      *gameOverLabel;
     QPushButton *restartBtn;
     QPushButton *menuBtn;
 
-    int m_rows;
-    int m_cols;
-    int m_difficulty;
+    int m_rows, m_cols, m_difficulty;
 
-    void buildUI();
-    void launchGame();
+    void spawnGame();
 };
 
 #endif // START_H

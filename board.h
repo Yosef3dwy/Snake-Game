@@ -10,7 +10,7 @@ private:
 
 public:
     Board(int size);
-    int getSide() const;   // FIX: must be const to match const usage
+    int getSide() const;          // const — required by const GameController methods
     void initialize();
     std::vector<CellContent>& operator[](int index);
 };

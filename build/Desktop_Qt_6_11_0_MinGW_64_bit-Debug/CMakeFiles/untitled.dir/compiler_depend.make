@@ -1107,8 +1107,10 @@ CMakeFiles/untitled.dir/gamewidget.cpp.obj: C:/Users/Owner/Desktop/Snake-Game/ga
   C:/Qt/6.11.0/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.11.0/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.11.0/mingw_64/include/QtCore/qyieldcpu.h \
+  C:/Qt/6.11.0/mingw_64/include/QtGui/QBrush \
   C:/Qt/6.11.0/mingw_64/include/QtGui/QKeyEvent \
   C:/Qt/6.11.0/mingw_64/include/QtGui/QPainter \
+  C:/Qt/6.11.0/mingw_64/include/QtGui/QPen \
   C:/Qt/6.11.0/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.11.0/mingw_64/include/QtGui/qaction.h \
   C:/Qt/6.11.0/mingw_64/include/QtGui/qbitmap.h \
@@ -5171,6 +5173,8 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/system_er
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/bessel_function.tcc:
 
+C:/Qt/6.11.0/mingw_64/include/QtGui/QBrush:
+
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/exp_integral.tcc:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdarg.h:
@@ -5311,6 +5315,10 @@ C:/Qt/6.11.0/mingw_64/include/QtWidgets/qabstractslider.h:
 
 C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h:
 
+C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qmediaplayer.h:
+
+C:/Qt/6.11.0/mingw_64/include/QtGui/QPen:
+
 C:/Qt/6.11.0/mingw_64/include/QtCore/qdatetime.h:
 
 C:/Qt/6.11.0/mingw_64/include/QtGui/qpainter.h:
@@ -5332,8 +5340,6 @@ C:/Qt/6.11.0/mingw_64/include/QtMultimedia/QMediaPlayer:
 C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qaudio.h:
 
 C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qaudiooutput.h:
-
-C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qmediaplayer.h:
 
 C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qtmultimedia-config.h:
 
