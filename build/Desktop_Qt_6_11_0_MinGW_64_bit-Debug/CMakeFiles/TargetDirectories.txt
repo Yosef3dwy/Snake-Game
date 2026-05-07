@@ -1,5 +1,0 @@
-D:/WorkingSpace/Coding_WS/Snake-Game/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/CMakeFiles/untitled.dir
-D:/WorkingSpace/Coding_WS/Snake-Game/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
-D:/WorkingSpace/Coding_WS/Snake-Game/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
-D:/WorkingSpace/Coding_WS/Snake-Game/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/CMakeFiles/untitled_autogen_timestamp_deps.dir
-D:/WorkingSpace/Coding_WS/Snake-Game/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/CMakeFiles/untitled_autogen.dir
