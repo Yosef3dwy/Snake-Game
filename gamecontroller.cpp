@@ -12,24 +12,45 @@ GameController::GameController(int size, int dfclty)
 {
     // Snake starts at (col=size/2, row=size/2)
     // board[row][col]
-    board[size / 2][size / 2] = CellContent::body;
-    tracker.EmptyCellRemoval(size / 2, size / 2);
+    setBoardCell(size / 2, size / 2, CellContent::body);
     createFood();
+}
+
+void GameController::setBoardCell(int x, int y, CellContent content)
+{
+    if (content == CellContent::empty) {
+        tracker.EmptyCellAddition(x, y);
+    } else {
+        tracker.EmptyCellRemoval(x, y);
+    }
+
+    board[y][x] = content;
 }
 
 // ─── createFood ──────────────────────────────────────────────────────────────
 void GameController::createFood()
 {
     NFoodCount++;
-    auto [x, y] = tracker.getRandomEmptyCell();   // x=col, y=row
+    std::pair<int, int> cell;
+
+    // Guard against stale tracker entries by confirming the board cell is still empty.
+    do {
+        cell = tracker.getRandomEmptyCell();   // x=col, y=row
+        if (board[cell.second][cell.first] == CellContent::empty) {
+            break;
+        }
+        tracker.EmptyCellRemoval(cell.first, cell.second);
+    } while (true);
+
+    int x = cell.first;
+    int y = cell.second;
 
     if (NFoodCount > 5) {
         NFoodCount = 0;
-        board[y][x] = CellContent::Sfood;
+        setBoardCell(x, y, CellContent::Sfood);
     } else {
-        board[y][x] = CellContent::Nfood;
+        setBoardCell(x, y, CellContent::Nfood);
     }
-    tracker.EmptyCellRemoval(x, y);
 }
 
 // ─── changeDirection ─────────────────────────────────────────────────────────
@@ -90,9 +111,8 @@ bool GameController::runStep()
 
     // Normal move
     snake.move();
-    board[ny][nx] = CellContent::body;
-    board[ty][tx] = CellContent::empty;
-    tracker.EmptyCellAddition(tx, ty);
+    setBoardCell(nx, ny, CellContent::body);
+    setBoardCell(tx, ty, CellContent::empty);
 
     return true;
 }
