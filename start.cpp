@@ -5,10 +5,10 @@
 #include <QHBoxLayout>
 #include <QFont>
 
-start::start(int rows, int cols, int difficulty, QWidget *parent)
+start::start(int rows, int cols, int difficulty, int volume, QWidget *parent)
     : QWidget(parent), ui(new Ui::start),
     game(nullptr),
-    m_rows(rows), m_cols(cols), m_difficulty(difficulty)
+    m_rows(rows), m_cols(cols), m_difficulty(difficulty), m_volume(volume)
 {
     ui->setupUi(this);
 
@@ -64,6 +64,7 @@ void start::spawnGame()
 
     // Create the widget — it calls setFixedSize internally
     game = new GameWidget(m_rows, m_cols, m_difficulty, this);
+    game->setEatVolume(m_volume);
 
     // Center the grid inside the 1400×760 window
     int gridW = m_cols * GameWidget::CELL_SIZE;
@@ -89,7 +90,32 @@ void start::onScoreChanged(int score)
 
 void start::onGameOver(int score)
 {
-    gameOverLabel->setText(QString("GAME OVER  —  Score: %1\nR = restart    M = menu").arg(score));
+    gameOverLabel->setText(
+        QString("GAME OVER\n\nScore: %1\n\nR = Restart\nM = Menu")
+            .arg(score)
+        );
+
+    gameOverLabel->setGeometry(
+        game->x(),
+        game->y() + 80,
+        game->width(),
+        220
+        );
+
+    gameOverLabel->setAlignment(Qt::AlignCenter);
+
+    gameOverLabel->setStyleSheet(
+        "QLabel {"
+        "color: white;"
+        "background-color: rgba(0,0,0,180);"
+        "font-size: 28px;"
+        "font-weight: bold;"
+        "border: 3px solid red;"
+        "border-radius: 15px;"
+        "padding: 15px;"
+        "}"
+        );
+
     gameOverLabel->show();
     gameOverLabel->raise();
 
@@ -98,8 +124,12 @@ void start::onGameOver(int score)
 
     restartBtn->setGeometry(gx + gw / 2 - 125, gy + gh - 60, 115, 42);
     menuBtn->setGeometry(   gx + gw / 2 + 10,  gy + gh - 60, 115, 42);
-    restartBtn->show(); restartBtn->raise();
-    menuBtn->show();    menuBtn->raise();
+
+    restartBtn->show();
+    restartBtn->raise();
+
+    menuBtn->show();
+    menuBtn->raise();
 }
 
 void start::onRestart() { spawnGame(); }

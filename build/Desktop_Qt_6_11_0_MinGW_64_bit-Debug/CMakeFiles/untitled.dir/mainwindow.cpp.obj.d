@@ -430,14 +430,22 @@ CMakeFiles/untitled.dir/mainwindow.cpp.obj: \
  C:/Qt/6.11.0/mingw_64/include/QtCore/QPoint \
  C:/Qt/6.11.0/mingw_64/include/QtCore/QTimer \
  C:/Qt/6.11.0/mingw_64/include/QtCore/qtimer.h \
- C:\Users\Owner\Desktop\Snake-Game\enums.h \
+ C:/Qt/6.11.0/mingw_64/include/QtMultimedia/QSoundEffect \
+ C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qsoundeffect.h \
+ C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
+ C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
+ C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
+ C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qaudio.h \
+ C:\Users\Owner\Desktop\Snake-Game\gamecontroller.h \
  C:\Users\Owner\Desktop\Snake-Game\board.h \
+ C:\Users\Owner\Desktop\Snake-Game\enums.h \
  C:\Users\Owner\Desktop\Snake-Game\snake.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/deque \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_deque.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/deque.tcc \
- C:\Users\Owner\Desktop\Snake-Game\gamecontroller.h \
  C:\Users\Owner\Desktop\Snake-Game\emptycelltracker.h \
+ C:/Qt/6.11.0/mingw_64/include/QtCore/qobject.h \
+ C:/Qt/6.11.0/mingw_64/include/QtGui/qwindowdefs.h \
  C:/Users/Owner/Desktop/Snake-Game/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/untitled_autogen/include/ui_mainwindow.h \
  C:/Qt/6.11.0/mingw_64/include/QtCore/QVariant \
  C:/Qt/6.11.0/mingw_64/include/QtWidgets/QApplication \
@@ -491,11 +499,7 @@ CMakeFiles/untitled.dir/mainwindow.cpp.obj: \
  C:/Qt/6.11.0/mingw_64/include/QtCore/qtimezone.h \
  C:/Qt/6.11.0/mingw_64/include/QtMultimedia/QMediaPlayer \
  C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qmediaplayer.h \
- C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
- C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
- C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
  C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qtaudio.h \
- C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qaudio.h \
  C:/Qt/6.11.0/mingw_64/include/QtMultimedia/QAudioOutput \
  C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qaudiooutput.h \
  C:/Qt/6.11.0/mingw_64/include/QtCore/QUrl

@@ -67,6 +67,8 @@ void GameController::eat(int growth)
     auto [nx, ny] = snake.getNextHead();   // next position (col, row)
     snake.grow(growth);
     board[ny][nx] = CellContent::body;
+
+    emit foodEaten();
     createFood();
 }
 
@@ -103,5 +105,9 @@ int GameController::getScore() const
 
 std::pair<int, int> GameController::getHead() const
 {
-    return snake.getHead();   // (col, row)
+    return snake.getHead();
+}
+std::pair<int,int> GameController::getNextHead() const
+{
+    return snake.getNextHead();
 }

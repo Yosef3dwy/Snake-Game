@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QString base = QDir::currentPath();
+    QString base = QCoreApplication::applicationDirPath();
 
     QPixmap pix(base + "/BG.png");
     ui->label->setPixmap(pix);
@@ -37,15 +37,14 @@ MainWindow::~MainWindow() { delete ui; }
 void MainWindow::on_Start_clicked()
 {
     int rows = 20, cols = 20, difficulty = 2;
-
+    int volume = 50; // default
     if (settingmenu) {
         if      (settingmenu->isS15Selected()) { rows = 15; cols = 15; }
         else if (settingmenu->isS25Selected()) { rows = 25; cols = 25; }
-
         difficulty = settingmenu->getDifficulty();
+        volume = settingmenu->getCurrentVolume();
     }
-
-    start *s = new start(rows, cols, difficulty);
+    start *s = new start(rows, cols, difficulty, volume);
     this->hide();
     s->show();
 }
@@ -63,6 +62,7 @@ void MainWindow::on_Settings_clicked()
             settingmenu->hide();
             this->show(); this->raise(); this->activateWindow();
         });
+
     }
 
     settingmenu->setInitialVolume(static_cast<int>(audio->volume() * 100));

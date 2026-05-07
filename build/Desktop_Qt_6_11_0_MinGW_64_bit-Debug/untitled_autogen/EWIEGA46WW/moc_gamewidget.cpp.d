@@ -186,6 +186,12 @@ C:/Users/Owner/Desktop/Snake-Game/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/unt
   C:/Qt/6.11.0/mingw_64/include/QtGui/qvectornd.h \
   C:/Qt/6.11.0/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.11.0/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.11.0/mingw_64/include/QtMultimedia/QSoundEffect \
+  C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qaudio.h \
+  C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qsoundeffect.h \
+  C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
+  C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
+  C:/Qt/6.11.0/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
   C:/Qt/6.11.0/mingw_64/include/QtWidgets/QWidget \
   C:/Qt/6.11.0/mingw_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.11.0/mingw_64/include/QtWidgets/qtwidgets-config.h \

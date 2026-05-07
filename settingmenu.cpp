@@ -57,3 +57,6 @@ int SettingMenu::getDifficulty() const
     if (ui->Hard->isChecked()) return 3;
     return 2;
 }
+int SettingMenu::getCurrentVolume() const {
+    return ui->SFXSlider->value();
+}

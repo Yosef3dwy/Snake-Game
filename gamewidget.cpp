@@ -2,26 +2,32 @@
 #include <QPainter>
 #include <QPen>
 #include <QBrush>
+#include <QDir>
+#include <QDebug>
+#include <qaudiooutput.h>
+#include<qmediaplayer.h>
 
 GameWidget::GameWidget(int rows, int cols, int difficulty, QWidget *parent)
     : QWidget(parent),
     m_rows(rows), m_cols(cols),
     m_paused(false), m_dead(false)
 {
-    // Fix size FIRST so paintEvent knows dimensions
     setFixedSize(cols * CELL_SIZE, rows * CELL_SIZE);
     setFocusPolicy(Qt::StrongFocus);
 
     m_controller = new GameController(rows, difficulty);
 
-    // Speed: Easy=220ms, Medium=140ms, Hard=75ms
     int ms = (difficulty == 1) ? 220 : (difficulty == 3) ? 75 : 140;
-
     m_timer = new QTimer(this);
     m_timer->setInterval(ms);
     connect(m_timer, &QTimer::timeout, this, &GameWidget::onTick);
     m_timer->start();
+
+    m_eatSound = new QSoundEffect(this);
+    m_eatSound->setSource(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/eat.wav"));
+    m_eatSound->setVolume(0.5f); // default 50% — caller should override via setEatVolume()
 }
+
 
 QPoint GameWidget::cellPos(int row, int col) const
 {
@@ -38,7 +44,16 @@ void GameWidget::onTick()
 {
     if (m_paused || m_dead) return;
 
+    // Peek at the cell the snake is about to enter BEFORE runStep moves it
+    auto [nx, ny] = m_controller->getNextHead();   // ADD THIS LINE (see note below)
+    CellContent nextCell = m_controller->board[ny][nx];
+    bool willEat = (nextCell == CellContent::Nfood || nextCell == CellContent::Sfood);
+
     bool alive = m_controller->runStep();
+
+    if (willEat && alive)
+        m_eatSound->play();         // play only when eat actually succeeded
+
     emit scoreChanged(m_controller->getScore());
 
     if (!alive) {
@@ -47,7 +62,7 @@ void GameWidget::onTick()
         emit gameOver(m_controller->getScore());
     }
 
-    update();   // trigger repaint every tick
+    update();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -162,12 +177,9 @@ void GameWidget::paintEvent(QPaintEvent *)
         p.setFont(f);
         p.drawText(rect(), Qt::AlignCenter, "PAUSED\nPress P to resume");
     }
-    if (m_dead) {
-        p.fillRect(rect(), QColor(0, 0, 0, 160));
-        p.setPen(QColor("#FF5252"));
-        QFont f; f.setPointSize(26); f.setBold(true);
-        p.setFont(f);
-        p.drawText(rect(), Qt::AlignCenter,
-                   QString("GAME OVER\nScore: %1").arg(m_controller->getScore()));
-    }
+
+}
+void GameWidget::setEatVolume(int value)
+{
+    m_eatSound->setVolume(value / 100.0f); // QSoundEffect uses 0.0-1.0
 }

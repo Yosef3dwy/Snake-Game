@@ -5,9 +5,7 @@
 #include <QPoint>
 #include <QTimer>
 #include <QKeyEvent>
-#include "enums.h"
-#include "board.h"
-#include "snake.h"
+#include <QSoundEffect>
 #include "gamecontroller.h"
 
 class GameWidget : public QWidget
@@ -15,9 +13,7 @@ class GameWidget : public QWidget
     Q_OBJECT
 
 public:
-    // PUBLIC so start.cpp can compute gridW/gridH
     static constexpr int CELL_SIZE = 30;
-
     explicit GameWidget(int rows, int cols, int difficulty, QWidget *parent = nullptr);
 
     QPoint cellPos(int row, int col) const;
@@ -30,12 +26,16 @@ signals:
     void gameOver(int score);
     void scoreChanged(int score);
 
+public slots:
+    void setEatVolume(int value);
+
 protected:
     void paintEvent(QPaintEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
 
 private slots:
     void onTick();
+
 
 private:
     int              m_rows;
@@ -44,6 +44,8 @@ private:
     QTimer          *m_timer;
     bool             m_paused;
     bool             m_dead;
+
+    QSoundEffect    *m_eatSound;     // ADD THIS
 };
 
 #endif // GAMEWIDGET_H

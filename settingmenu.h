@@ -18,6 +18,7 @@ public:
     bool isS20Selected() const;
     bool isS25Selected() const;
     int  getDifficulty() const;   // 1=Easy 2=Medium 3=Hard
+    int getCurrentVolume() const;
 
 signals:
     void volumeChanged(int value);

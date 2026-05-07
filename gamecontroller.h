@@ -5,8 +5,11 @@
 #include "snake.h"
 #include "emptycelltracker.h"
 #include "enums.h"
+#include <qobject.h>
+#include <qwindowdefs.h>
 
-class GameController {
+class GameController : public QObject {
+    Q_OBJECT
 private:
     Snake            snake;
     EmptyCellTracker tracker;
@@ -19,7 +22,7 @@ private:
 
 public:
     Board board;
-
+    std::pair<int,int> getNextHead() const;
     GameController(int size, int dfclty);
 
     void changeDirection(Direction direction);
@@ -27,6 +30,9 @@ public:
 
     int getScore() const;
     std::pair<int,int> getHead() const;   // returns (col, row) == (x, y)
+signals:
+    void foodEaten();
+
 };
 
 #endif // GAMECONTROLLER_H
