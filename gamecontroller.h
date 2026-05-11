@@ -1,39 +1,45 @@
 #ifndef GAMECONTROLLER_H
 #define GAMECONTROLLER_H
 
+#include <QObject>
 #include "board.h"
 #include "snake.h"
 #include "emptycelltracker.h"
 #include "enums.h"
-#include <qobject.h>
-#include <qwindowdefs.h>
 
 class GameController : public QObject {
     Q_OBJECT
+
 private:
     Snake            snake;
     EmptyCellTracker tracker;
     int              NFoodCount;
     int              difficulty;
 
+    int              m_dropInterval;   // steps between each tile drop
+    int              m_stepsSinceDrop; // step counter
+    bool m_dropTiles;
     void createFood();
     bool willHitBoundary() const;
     void eat(int growth);
-    void setBoardCell(int x, int y, CellContent content);
+    void dropTile();
 
 public:
     Board board;
-    std::pair<int,int> getNextHead() const;
-    GameController(int size, int dfclty);
+
+    GameController(int size, int dfclty, bool dropTiles);
+
+
 
     void changeDirection(Direction direction);
     bool runStep();
 
     int getScore() const;
-    std::pair<int,int> getHead() const;   // returns (col, row) == (x, y)
+    std::pair<int,int> getHead()     const;
+    std::pair<int,int> getNextHead() const;
+
 signals:
     void foodEaten();
-
 };
 
 #endif // GAMECONTROLLER_H

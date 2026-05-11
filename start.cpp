@@ -1,22 +1,20 @@
 #include "start.h"
 #include "ui_start.h"
 #include "mainwindow.h"
-#include <QVBoxLayout>
-#include <QHBoxLayout>
 #include <QFont>
 
-start::start(int rows, int cols, int difficulty, int volume, QWidget *parent)
+start::start(int rows, int cols, int difficulty, int volume, bool dropTiles, QWidget *parent)
     : QWidget(parent), ui(new Ui::start),
-    game(nullptr),
-    m_rows(rows), m_cols(cols), m_difficulty(difficulty), m_volume(volume)
+      game(nullptr),
+      m_rows(rows), m_cols(cols), m_difficulty(difficulty),
+      m_volume(volume), m_dropTiles(dropTiles)
 {
     ui->setupUi(this);
-
     setFixedSize(1400, 760);
     setStyleSheet("background-color: #3E2723;");
     setWindowTitle("Snake");
 
-    // ── Score label ───────────────────────────────────────
+    // score label
     scoreLabel = new QLabel("Score: 0", this);
     scoreLabel->setGeometry(0, 8, 1400, 36);
     scoreLabel->setAlignment(Qt::AlignCenter);
@@ -24,18 +22,18 @@ start::start(int rows, int cols, int difficulty, int volume, QWidget *parent)
     scoreLabel->setFont(sf);
     scoreLabel->setStyleSheet("color: #FFD54F; background: transparent;");
 
-    // ── Game-over overlay ─────────────────────────────────
+    // game over text
     gameOverLabel = new QLabel(this);
     gameOverLabel->setAlignment(Qt::AlignCenter);
     gameOverLabel->setStyleSheet(
-        "color: #FF5252; font-size: 30px; font-weight: bold;"
+        "color: #FF5252; font-size: 28px; font-weight: bold;"
         "background: transparent;");
     gameOverLabel->hide();
 
-    // ── Buttons ───────────────────────────────────────────
+    // buttons
     restartBtn = new QPushButton("▶  Play Again", this);
     restartBtn->setStyleSheet(
-        "QPushButton{background:#4CAF50;color:white;font-size:15px;"
+        "QPushButton{background:#4CAF50;color:white;font-size:14px;"
         "font-weight:bold;border:none;border-radius:10px;padding:8px;}"
         "QPushButton:hover{background:#66BB6A;}");
     restartBtn->hide();
@@ -43,7 +41,7 @@ start::start(int rows, int cols, int difficulty, int volume, QWidget *parent)
 
     menuBtn = new QPushButton("⏮  Main Menu", this);
     menuBtn->setStyleSheet(
-        "QPushButton{background:#1565C0;color:white;font-size:15px;"
+        "QPushButton{background:#1565C0;color:white;font-size:14px;"
         "font-weight:bold;border:none;border-radius:10px;padding:8px;}"
         "QPushButton:hover{background:#1976D2;}");
     menuBtn->hide();
@@ -52,7 +50,6 @@ start::start(int rows, int cols, int difficulty, int volume, QWidget *parent)
     spawnGame();
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 void start::spawnGame()
 {
     if (game) { game->deleteLater(); game = nullptr; }
@@ -62,11 +59,9 @@ void start::spawnGame()
     menuBtn->hide();
     scoreLabel->setText("Score: 0");
 
-    // Create the widget — it calls setFixedSize internally
-    game = new GameWidget(m_rows, m_cols, m_difficulty, this);
-    game->setEatVolume(m_volume);
+    game = new GameWidget(m_rows, m_cols, m_difficulty, m_volume, m_dropTiles, this);
 
-    // Center the grid inside the 1400×760 window
+    // center grid in the 1400×760 window
     int gridW = m_cols * GameWidget::CELL_SIZE;
     int gridH = m_rows * GameWidget::CELL_SIZE;
     int gx = (1400 - gridW) / 2;
@@ -78,11 +73,9 @@ void start::spawnGame()
     connect(game, &GameWidget::scoreChanged, this, &start::onScoreChanged);
     connect(game, &GameWidget::gameOver,     this, &start::onGameOver);
 
-    // Overlay label covers the grid area
     gameOverLabel->setGeometry(gx - 10, gy + gridH / 3, gridW + 20, gridH / 3);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 void start::onScoreChanged(int score)
 {
     scoreLabel->setText(QString("Score: %1").arg(score));
@@ -90,49 +83,16 @@ void start::onScoreChanged(int score)
 
 void start::onGameOver(int score)
 {
-    gameOverLabel->setText(
-        QString("GAME OVER\n\nScore: %1\n\nR = Restart\nM = Menu")
-            .arg(score)
-        );
-
-    gameOverLabel->setGeometry(
-        game->x(),
-        game->y() + 80,
-        game->width(),
-        220
-        );
-
-    gameOverLabel->setAlignment(Qt::AlignCenter);
-
-    gameOverLabel->setStyleSheet(
-        "QLabel {"
-        "color: white;"
-        "background-color: rgba(0,0,0,180);"
-        "font-size: 28px;"
-        "font-weight: bold;"
-        "border: 3px solid red;"
-        "border-radius: 15px;"
-        "padding: 15px;"
-        "}"
-        );
-
-    gameOverLabel->show();
-    gameOverLabel->raise();
-
     int gx = game->x(), gy = game->y();
     int gw = game->width(), gh = game->height();
 
-    restartBtn->setGeometry(gx + gw / 2 - 125, gy + gh - 60, 115, 42);
-    menuBtn->setGeometry(   gx + gw / 2 + 10,  gy + gh - 60, 115, 42);
-
-    restartBtn->show();
-    restartBtn->raise();
-
-    menuBtn->show();
-    menuBtn->raise();
+    restartBtn->setGeometry(gx + gw / 2 - 130, gy + gh - 60, 120, 44);
+    menuBtn->setGeometry(   gx + gw / 2 + 10,  gy + gh - 60, 120, 44);
+    restartBtn->show(); restartBtn->raise();
+    menuBtn->show();    menuBtn->raise();
 }
 
-void start::onRestart() { spawnGame(); }
+void start::onRestart()    { spawnGame(); }
 
 void start::onBackToMenu()
 {

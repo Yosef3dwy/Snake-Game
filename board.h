@@ -1,5 +1,6 @@
 #ifndef BOARD_H
 #define BOARD_H
+
 #include <vector>
 #include "enums.h"
 
@@ -10,9 +11,9 @@ private:
 
 public:
     Board(int size);
-    int getSide() const;          // const — required by const GameController methods
+    int getSide() const;
     void initialize();
     std::vector<CellContent>& operator[](int index);
 };
 
-#endif
+#endif // BOARD_H

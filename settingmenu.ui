@@ -404,6 +404,45 @@ QPushButton:pressed {
     <string>Back</string>
    </property>
   </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>990</x>
+     <y>510</y>
+     <width>131</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    color: red;
+    font-size: 16px;
+}
+
+QCheckBox::indicator {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #444;
+    border: 2px solid #888;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #2ecc71;
+    border: 2px solid #27ae60;
+}
+
+QCheckBox::indicator:hover {
+    border: 2px solid #00bcd4;
+}</string>
+   </property>
+   <property name="text">
+    <string>Drop Tiles</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>

@@ -13,15 +13,17 @@ public:
     explicit SettingMenu(QWidget *parent = nullptr);
     void setInitialVolume(int value);
     ~SettingMenu();
-
+    bool isDropTilesEnabled() const;
     bool isS15Selected() const;
     bool isS20Selected() const;
     bool isS25Selected() const;
-    int  getDifficulty() const;   // 1=Easy 2=Medium 3=Hard
-    int getCurrentVolume() const;
+    int  getDifficulty()    const;   // 1=Easy 2=Medium 3=Hard
+    int  getCurrentVolume() const;   // 0–100 main volume
+    int  getSFXVolume()     const;   // 0–100 sfx volume
 
 signals:
     void volumeChanged(int value);
+    void sfxVolumeChanged(int value);
     void backClicked();
 
 private slots:

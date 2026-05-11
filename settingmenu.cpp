@@ -1,5 +1,4 @@
 #include "settingmenu.h"
-#include "mainwindow.h"
 #include "ui_settingmenu.h"
 #include <QButtonGroup>
 
@@ -9,6 +8,7 @@ SettingMenu::SettingMenu(QWidget *parent)
     ui->setupUi(this);
     setStyleSheet("QWidget { background-color: #EDC9AF; }");
 
+    // difficulty buttons toggle group
     ui->Easy->setCheckable(true);
     ui->Medium->setCheckable(true);
     ui->Hard->setCheckable(true);
@@ -19,6 +19,7 @@ SettingMenu::SettingMenu(QWidget *parent)
     g1->setExclusive(true);
     ui->Medium->setChecked(true);
 
+    // grid size buttons toggle group
     ui->S15X15->setCheckable(true);
     ui->S20X20->setCheckable(true);
     ui->S25X25->setCheckable(true);
@@ -29,11 +30,19 @@ SettingMenu::SettingMenu(QWidget *parent)
     g2->setExclusive(true);
     ui->S20X20->setChecked(true);
 
+    // drop tiles checkbox which is unchecked by default
+    ui->checkBox->setChecked(false);
+
+    // volume sliders
     ui->MainVolSilder->setRange(0, 100);
     ui->MainVolSilder->setValue(50);
+    ui->SFXSlider->setRange(0, 100);
+    ui->SFXSlider->setValue(80);
 
     connect(ui->MainVolSilder, &QSlider::valueChanged,
             this, &SettingMenu::volumeChanged);
+    connect(ui->SFXSlider, &QSlider::valueChanged,
+            this, &SettingMenu::sfxVolumeChanged);
 }
 
 SettingMenu::~SettingMenu() { delete ui; }
@@ -47,9 +56,10 @@ void SettingMenu::setInitialVolume(int value)
     ui->MainVolSilder->blockSignals(false);
 }
 
-bool SettingMenu::isS15Selected() const { return ui->S15X15->isChecked(); }
-bool SettingMenu::isS20Selected() const { return ui->S20X20->isChecked(); }
-bool SettingMenu::isS25Selected() const { return ui->S25X25->isChecked(); }
+bool SettingMenu::isS15Selected()      const { return ui->S15X15->isChecked(); }
+bool SettingMenu::isS20Selected()      const { return ui->S20X20->isChecked(); }
+bool SettingMenu::isS25Selected()      const { return ui->S25X25->isChecked(); }
+bool SettingMenu::isDropTilesEnabled() const { return ui->checkBox->isChecked(); }
 
 int SettingMenu::getDifficulty() const
 {
@@ -57,6 +67,6 @@ int SettingMenu::getDifficulty() const
     if (ui->Hard->isChecked()) return 3;
     return 2;
 }
-int SettingMenu::getCurrentVolume() const {
-    return ui->SFXSlider->value();
-}
+
+int SettingMenu::getCurrentVolume() const { return ui->MainVolSilder->value(); }
+int SettingMenu::getSFXVolume()     const { return ui->SFXSlider->value(); }

@@ -14,7 +14,7 @@ class start : public QWidget
     Q_OBJECT
 
 public:
-    explicit start(int rows, int cols, int difficulty,int volume, QWidget *parent = nullptr);
+    explicit start(int rows, int cols, int difficulty, int volume, bool dropTiles, QWidget *parent = nullptr);
     ~start();
 
 protected:
@@ -33,8 +33,9 @@ private:
     QLabel      *gameOverLabel;
     QPushButton *restartBtn;
     QPushButton *menuBtn;
+    bool m_dropTiles;
 
-    int m_rows, m_cols, m_difficulty,m_volume;
+    int m_rows, m_cols, m_difficulty, m_volume;
 
     void spawnGame();
 };

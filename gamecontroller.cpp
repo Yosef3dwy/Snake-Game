@@ -3,74 +3,66 @@
 #include "gamecontroller.h"
 #include "emptycelltracker.h"
 
-GameController::GameController(int size, int dfclty)
+GameController::GameController(int size, int dfclty, bool dropTiles)
     : board(size),
-    snake(size / 2, size / 2),
-    tracker(size),
-    NFoodCount(0),
-    difficulty(dfclty)
+      snake(size / 2, size / 2),
+      tracker(size),
+      NFoodCount(0),
+      difficulty(dfclty),
+      m_dropTiles(dropTiles),
+      m_stepsSinceDrop(0)
 {
-    // Snake starts at (col=size/2, row=size/2)
-    // board[row][col]
-    setBoardCell(size / 2, size / 2, CellContent::body);
+    if      (dfclty == 1) m_dropInterval = 40;
+    else if (dfclty == 3) m_dropInterval = 15;
+    else                  m_dropInterval = 25;
+
+    board[size / 2][size / 2] = body;
+    tracker.EmptyCellRemoval(size / 2, size / 2);
     createFood();
 }
 
-void GameController::setBoardCell(int x, int y, CellContent content)
+// dropTile
+void GameController::dropTile()
 {
-    if (content == CellContent::empty) {
-        tracker.EmptyCellAddition(x, y);
-    } else {
-        tracker.EmptyCellRemoval(x, y);
-    }
-
-    board[y][x] = content;
+    if (!m_dropTiles)      return;
+    if (tracker.isEmpty()) return;
+    auto [x, y] = tracker.getRandomEmptyCell();
+    board[y][x] = dropped;
+    tracker.EmptyCellRemoval(x, y);
 }
 
-// ─── createFood ──────────────────────────────────────────────────────────────
+// createFood
 void GameController::createFood()
 {
+    if (tracker.isEmpty()) return;
+
     NFoodCount++;
-    std::pair<int, int> cell;
-
-    // Guard against stale tracker entries by confirming the board cell is still empty.
-    do {
-        cell = tracker.getRandomEmptyCell();   // x=col, y=row
-        if (board[cell.second][cell.first] == CellContent::empty) {
-            break;
-        }
-        tracker.EmptyCellRemoval(cell.first, cell.second);
-    } while (true);
-
-    int x = cell.first;
-    int y = cell.second;
+    auto [x, y] = tracker.getRandomEmptyCell();
 
     if (NFoodCount > 5) {
         NFoodCount = 0;
-        setBoardCell(x, y, CellContent::Sfood);
+        board[y][x] = Sfood;
     } else {
-        setBoardCell(x, y, CellContent::Nfood);
+        board[y][x] = Nfood;
     }
+    tracker.EmptyCellRemoval(x, y);
 }
 
-// ─── changeDirection ─────────────────────────────────────────────────────────
+//changeDirection
 void GameController::changeDirection(Direction direction)
 {
     Direction cur = snake.getDirection();
-
-    // Prevent reversing
     if (direction == Direction::UP    && cur == Direction::DOWN)  return;
     if (direction == Direction::DOWN  && cur == Direction::UP)    return;
     if (direction == Direction::LEFT  && cur == Direction::RIGHT) return;
     if (direction == Direction::RIGHT && cur == Direction::LEFT)  return;
-
     snake.setDirection(direction);
 }
 
-// ─── willHitBoundary ─────────────────────────────────────────────────────────
+//  willHitBoundary
 bool GameController::willHitBoundary() const
 {
-    auto [x, y] = snake.getHead();   // x=col, y=row
+    auto [x, y] = snake.getHead();
     int size = board.getSide();
     Direction dir = snake.getDirection();
 
@@ -78,56 +70,70 @@ bool GameController::willHitBoundary() const
     if (dir == Direction::DOWN  && y == size - 1) return true;
     if (dir == Direction::LEFT  && x == 0)        return true;
     if (dir == Direction::RIGHT && x == size - 1) return true;
-
     return false;
 }
 
-// ─── eat ─────────────────────────────────────────────────────────────────────
+// eat
 void GameController::eat(int growth)
 {
-    auto [nx, ny] = snake.getNextHead();   // next position (col, row)
+    auto [nx, ny] = snake.getNextHead();
+    tracker.EmptyCellRemoval(nx, ny);
     snake.grow(growth);
-    board[ny][nx] = CellContent::body;
-
-    emit foodEaten();
+    board[ny][nx] = body;
     createFood();
 }
 
-// ─── runStep ─────────────────────────────────────────────────────────────────
+// runStep
 bool GameController::runStep()
 {
-    if (willHitBoundary()) return false;
-
     auto [nx, ny] = snake.getNextHead();
+    int size = board.getSide();
+    if (nx < 0 || nx >= size || ny < 0 || ny >= size)
+        return false;
+
+    if (willHitBoundary())
+        return false;
+
     auto [tx, ty] = snake.getTail();
-
-    // Hit itself?
-    if (board[ny][nx] == CellContent::body) return false;
-
-    // Eat food?
     CellContent nextCell = board[ny][nx];
-    if (nextCell == CellContent::Nfood) { eat(1); return true; }
-    if (nextCell == CellContent::Sfood) { eat(3); return true; }
 
-    // Normal move
+
+    if (nextCell == body)    return false;
+    if (nextCell == dropped) return false;
+
+    if (nextCell == Nfood) {
+        eat(1);
+        emit foodEaten();
+        m_stepsSinceDrop++;
+        if (m_stepsSinceDrop >= m_dropInterval) { m_stepsSinceDrop = 0; dropTile(); }
+        return true;
+    }
+
+    if (nextCell == Sfood) {
+        eat(3);
+        emit foodEaten();
+        m_stepsSinceDrop++;
+        if (m_stepsSinceDrop >= m_dropInterval) { m_stepsSinceDrop = 0; dropTile(); }
+        return true;
+    }
+
+    tracker.EmptyCellRemoval(nx, ny);
+
     snake.move();
-    setBoardCell(nx, ny, CellContent::body);
-    setBoardCell(tx, ty, CellContent::empty);
+    board[ny][nx] = body;
+    board[ty][tx] = empty;
+    tracker.EmptyCellAddition(tx, ty);
+
+    m_stepsSinceDrop++;
+    if (m_stepsSinceDrop >= m_dropInterval) { m_stepsSinceDrop = 0; dropTile(); }
 
     return true;
 }
 
-// ─── helpers ─────────────────────────────────────────────────────────────────
 int GameController::getScore() const
 {
     return const_cast<Snake &>(snake).score();
 }
 
-std::pair<int, int> GameController::getHead() const
-{
-    return snake.getHead();
-}
-std::pair<int,int> GameController::getNextHead() const
-{
-    return snake.getNextHead();
-}
+std::pair<int,int> GameController::getHead()     const { return snake.getHead(); }
+std::pair<int,int> GameController::getNextHead() const { return snake.getNextHead(); }

@@ -2,7 +2,7 @@
 
 Board::Board(int size) : side(size)
 {
-    grid.assign(side, std::vector<CellContent>(side, CellContent::empty));
+    grid.assign(side, std::vector<CellContent>(side, empty));
 }
 
 std::vector<CellContent>& Board::operator[](int index)
@@ -14,5 +14,5 @@ int Board::getSide() const { return side; }
 
 void Board::initialize()
 {
-    grid.assign(side, std::vector<CellContent>(side, CellContent::empty));
+    grid.assign(side, std::vector<CellContent>(side, empty));
 }

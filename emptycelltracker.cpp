@@ -5,48 +5,48 @@
 
 #include "emptycelltracker.h"
 
-
-EmptyCellTracker::EmptyCellTracker(int side) 
+EmptyCellTracker::EmptyCellTracker(int side)
 {
-        cellIndices.assign(side, std::vector<int>(side, -1));
+    cellIndices.assign(side, std::vector<int>(side, -1)); // assign every empty cell to have -1
 
-        for (int y = 0; y < side; ++y) {
-            for (int x = 0; x < side; ++x) {
-                EmptyCellAddition(x, y);
-            }
+    for (int y = 0; y < side; ++y) {
+        for (int x = 0; x < side; ++x) {
+            EmptyCellAddition(x, y);
         }
     }
+}
 
-
-void EmptyCellTracker::EmptyCellAddition(int x, int y) {
-    if (cellIndices[y][x] != -1) return; // Already marked as empty
+void EmptyCellTracker::EmptyCellAddition(int x, int y)
+{
+    if (cellIndices[y][x] != -1) return; // something is in the cell
 
     emptyCells.push_back({x, y});
-
     cellIndices[y][x] = emptyCells.size() - 1;
 }
 
-void EmptyCellTracker::EmptyCellRemoval(int x, int y) 
+void EmptyCellTracker::EmptyCellRemoval(int x, int y)
 {
     int indexToRemove = cellIndices[y][x];
     if (indexToRemove == -1) return;
 
     std::pair<int, int> lastCell = emptyCells.back();
-
     emptyCells[indexToRemove] = lastCell;
-
     cellIndices[lastCell.second][lastCell.first] = indexToRemove;
 
     emptyCells.pop_back();
-
     cellIndices[y][x] = -1;
 }
 
-std::pair<int, int> EmptyCellTracker::getRandomEmptyCell() {
-        if (emptyCells.empty()) {
-            throw std::runtime_error("No empty cells available!");
-        }
-
-        int randomIndex = std::rand() % emptyCells.size();
-        return emptyCells[randomIndex];
+std::pair<int, int> EmptyCellTracker::getRandomEmptyCell()
+{
+    if (emptyCells.empty()) {
+        throw std::runtime_error("No empty cells available!");
     }
+    int randomIndex = std::rand() % emptyCells.size();
+    return emptyCells[randomIndex];
+}
+
+bool EmptyCellTracker::isEmpty() const
+{
+    return emptyCells.empty();
+}
