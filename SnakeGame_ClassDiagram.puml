@@ -1,0 +1,198 @@
+@startuml SnakeGame_ClassDiagram
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam classBackgroundColor #F3F3F3
+skinparam classBorderColor #333333
+skinparam classArrowColor #333333
+skinparam classAttributeBackgroundColor #FFFACD
+
+' Enums
+enum CellContent {
+    empty
+    body
+    Nfood
+    Sfood
+    dropped
+}
+
+enum Direction {
+    UP
+    DOWN
+    RIGHT
+    LEFT
+}
+
+' Core Game Logic Classes
+class Board {
+    - grid: vector<vector<CellContent>>
+    - side: int
+    --
+    + Board(int size)
+    + getSide() : int
+    + initialize() : void
+    + operator[](int index) : vector<CellContent>&
+}
+
+class EmptyCellTracker {
+    - emptyCells: vector<pair<int, int>>
+    - cellIndices: vector<vector<int>>
+    --
+    + EmptyCellTracker(int side)
+    + EmptyCellAddition(int x, int y) : void
+    + EmptyCellRemoval(int x, int y) : void
+    + getRandomEmptyCell() : pair<int, int>
+    + isEmpty() : bool
+}
+
+class Snake {
+    - body: deque<pair<int, int>>
+    - direction: Direction
+    --
+    + Snake(int x_init, int y_init)
+    + getTail() : pair<int, int>
+    + getHead() : pair<int, int>
+    + setDirection(Direction) : void
+    + getDirection() : Direction
+    + move() : void
+    + grow(int amount) : void
+    + score() : int
+    + getNextHead() : pair<int, int>
+}
+
+class GameController <<QObject>> {
+    - snake: Snake
+    - tracker: EmptyCellTracker
+    - NFoodCount: int
+    - difficulty: int
+    - m_dropInterval: int
+    - m_stepsSinceDrop: int
+    - m_dropTiles: bool
+    + board: Board
+    --
+    + GameController(int size, int dfclty, bool dropTiles)
+    + changeDirection(Direction) : void
+    + runStep() : bool
+    + getScore() : int
+    + getHead() : pair<int, int>
+    + getNextHead() : pair<int, int>
+    --
+    ~ createFood() : void
+    ~ willHitBoundary() : bool
+    ~ eat(int growth) : void
+    ~ dropTile() : void
+    --
+    # foodEaten()
+}
+
+' UI Classes
+class GameWidget <<QWidget>> {
+    - m_rows: int
+    - m_cols: int
+    - m_controller: GameController*
+    - m_timer: QTimer*
+    - m_paused: bool
+    - m_dead: bool
+    - m_eatSound: QSoundEffect*
+    + CELL_SIZE: constexpr int = 30
+    --
+    + GameWidget(int rows, int cols, int difficulty, int volume, bool dropTiles, QWidget* = nullptr)
+    + setEatVolume(int) : void
+    + cellPos(int row, int col) : QPoint
+    + cellRect(int row, int col) : QRect
+    + rows() : int
+    + cols() : int
+    --
+    # paintEvent(QPaintEvent*) : void
+    # keyPressEvent(QKeyEvent*) : void
+    - onTick() : void
+    --
+    # gameOver(int score)
+    # scoreChanged(int score)
+}
+
+class MainWindow <<QMainWindow>> {
+    - ui: Ui::MainWindow*
+    + settingmenu: SettingMenu*
+    --
+    + MainWindow(QWidget* = nullptr)
+    + ~MainWindow()
+    - on_Start_clicked() : void
+    - on_Settings_clicked() : void
+    - on_Exit_clicked() : void
+}
+
+class SettingMenu <<QWidget>> {
+    - ui: Ui::SettingMenu*
+    --
+    + SettingMenu(QWidget* = nullptr)
+    + ~SettingMenu()
+    + setInitialVolume(int) : void
+    + isDropTilesEnabled() : bool
+    + isS15Selected() : bool
+    + isS20Selected() : bool
+    + isS25Selected() : bool
+    + getDifficulty() : int
+    + getCurrentVolume() : int
+    + getSFXVolume() : int
+    - on_Back_clicked() : void
+    --
+    # volumeChanged(int)
+    # sfxVolumeChanged(int)
+    # backClicked()
+}
+
+class start <<QWidget>> {
+    - ui: Ui::start*
+    - game: GameWidget*
+    - scoreLabel: QLabel*
+    - gameOverLabel: QLabel*
+    - restartBtn: QPushButton*
+    - menuBtn: QPushButton*
+    - m_dropTiles: bool
+    - m_rows: int
+    - m_cols: int
+    - m_difficulty: int
+    - m_volume: int
+    --
+    + start(int rows, int cols, int difficulty, int volume, bool dropTiles, QWidget* = nullptr)
+    + ~start()
+    - onScoreChanged(int) : void
+    - onGameOver(int) : void
+    - onRestart() : void
+    - onBackToMenu() : void
+    - spawnGame() : void
+    # keyPressEvent(QKeyEvent*) : void
+}
+
+' Relationships
+Board --> CellContent : uses
+Snake --> Direction : uses
+GameController --> Snake : contains
+GameController --> EmptyCellTracker : contains
+GameController --> Board : contains
+GameController --> CellContent : uses
+GameWidget --> GameController : manages
+GameWidget --> Direction : uses
+start --> GameWidget : creates
+MainWindow --> SettingMenu : uses
+MainWindow --> start : creates
+
+note right of GameController
+    Core game logic engine
+    Manages snake, food, obstacles
+    Emits signals for UI updates
+end note
+
+note right of GameWidget
+    Renders game board with graphics
+    Handles keyboard input
+    Manages game timer and audio
+end note
+
+note right of MainWindow
+    Application entry point
+    Manages menu navigation
+    Handles background music
+end note
+
+@enduml
